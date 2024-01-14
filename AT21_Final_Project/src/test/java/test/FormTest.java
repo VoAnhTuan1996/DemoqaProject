@@ -1,6 +1,7 @@
 package test;
 
 import core.BaseTest;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -22,8 +23,6 @@ public class FormTest extends BaseTest {
         String url = BaseUrl + "automation-practice-form";
         driver.get(url);
         objForm = new FormPageObj(driver);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--force-device-scale-factor=1");
     }
     @Test(priority = 1)
     public void RegisterFormTest() throws InterruptedException {
@@ -49,7 +48,7 @@ public class FormTest extends BaseTest {
         String imgFile = path + "\\src\\test\\image\\avt.jpg";
         objForm.sendkeyUploadFilePicture(imgFile);
         objForm.enterCurrentAddressInput("150 Nguyen Thai Son, p4, Go Vap");
-/*        JavascriptExecutor js1 = (JavascriptExecutor) driver;
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;
         js1.executeScript("window.scrollTo( 0, document.body.scrollHeight)");
         try {
             Thread.sleep(2000);
@@ -58,7 +57,11 @@ public class FormTest extends BaseTest {
         }
         objForm.clickSelectState();
         WebElement itemState = objForm.getElementByXpath(driver,"//div[text()='NCR']");
-        itemState.click();*/
+        itemState.click();
+        objForm.clickSelectCity();
+        WebElement itemCity = objForm.getElementByXpath(driver,"//div[text()='Delhi']");
+        itemCity.click();
+        objForm.clickToElementById(driver,FormUI.submitBtn);
         Thread.sleep(3000);
     }
 }

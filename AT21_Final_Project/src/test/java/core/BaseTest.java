@@ -18,6 +18,8 @@ public class BaseTest {
             case "Chrome":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--lang=vi");
+                options.addArguments("--force-device-scale-factor=0.85");
+                options.addArguments("high-dpi-support=0.75");
                 driver = WebDriverManager.chromedriver().capabilities(options).create();
                 break;
             case "Firefox":

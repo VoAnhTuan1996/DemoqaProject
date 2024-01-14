@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
 
 import javax.swing.*;
+import java.util.List;
 
 public class BasePage {
     private long TIMEOUT = 30;
@@ -15,9 +16,14 @@ public class BasePage {
 
     public By getByXpath(String locator){return By.xpath(locator);}
     public By getById(String locator){return  By.id(locator);}
+    public By getByClassName(String locator){return By.className(locator);}
 
     public WebElement getElementByXpath(WebDriver driver, String locator){
         return driver.findElement(getByXpath(locator));
+    }
+
+    public List<WebElement> getListElementByXpath(WebDriver driver, String locator){
+        return driver.findElements(getByXpath(locator));
     }
 
     public WebElement getElementById(WebDriver driver, String locator){
@@ -27,6 +33,9 @@ public class BasePage {
     public void clickToElementByXpath(WebDriver driver, String locator){getElementByXpath(driver, locator).click();}
     public void clickToElementById(WebDriver driver, String locator){getElementById(driver,locator).click();}
 
+    public WebElement getElementByClassName(WebDriver driver, String locator){
+        return driver.findElement(getByClassName(locator));
+    }
     public void sendKeyToElementByXpath(WebDriver driver, String locator, String text){
         getElementByXpath(driver,locator).sendKeys(text);
     }
@@ -38,4 +47,5 @@ public class BasePage {
         actions = new Actions(driver);
         actions.doubleClick(getElementByXpath(driver, locator)).build().perform();
     }
+
 }
